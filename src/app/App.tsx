@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Home, User, Code, Briefcase, Award, Mail, Linkedin, Github, Instagram } from 'lucide-react';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import profilePic from "../assets/prakash-kpmg.jpeg";
+import "../index.css";
+
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -24,9 +26,9 @@ export default function App() {
   ];
 
   const socialLinks = [
-    { icon: Linkedin, url: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Github, url: 'https://github.com', label: 'GitHub' },
-    { icon: Instagram, url: 'https://instagram.com', label: 'Instagram' },
+    { icon: Linkedin, url: 'https://www.linkedin.com/in/prakash-behuria-167946306?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', label: 'LinkedIn' },
+    { icon: Github, url: 'https://github.com/Deadcoil', label: 'GitHub' },
+    { icon: Instagram, url: 'https://www.instagram.com/deadcoil.dumb?igsh=MWxwdGhlODlscm1udA==', label: 'Instagram' },
   ];
 
   return (
@@ -50,11 +52,21 @@ export default function App() {
       </nav>
 
       {/* Social Links - Left Side Full Height */}
-      <div className="fixed top-0 left-0 z-50 h-full flex flex-col justify-end bg-slate-900 p-4 shadow-2xl border-r border-purple-500/30 w-20">
+      <div className="fixed top-0 left-0 z-50 h-full flex flex-col items-center bg-slate-900 p-4 shadow-2xl border-r border-purple-500/30 w-20">
+
+        {/* PB at top */}
+        <div className="text-2xl font-bold mb-6 mt-2 fancy-initials">
+          PB.
+        </div>
+
+        {/* Spacer to push icons down */}
+        <div className="flex-grow" />
+
         <div className="flex flex-col items-center gap-4 pb-6">
-          {/* Line extending upward from the bottom */}
-          <div className="w-0.5 h-32 bg-gradient-to-t from-purple-500 to-transparent" />
           
+          {/* Line */}
+          <div className="w-0.5 h-32 bg-gradient-to-t from-purple-500 to-transparent" />
+
           {socialLinks.map((social, index) => (
             <a
               key={index}
@@ -67,8 +79,10 @@ export default function App() {
               <social.icon size={20} />
             </a>
           ))}
+
         </div>
       </div>
+
 
       {/* Sections with left margin to account for social links */}
       <div className="ml-20">
@@ -85,7 +99,7 @@ export default function App() {
             
             {/* Name */}
             <h1 className="text-4xl md:text-5xl mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent whitespace-nowrap">
-              Hello, I'm Prakash Behuria
+              Hello, I'm <span className="fancy-name">Prakash Behuria</span>
             </h1>
             
             {/* Title */}
@@ -96,7 +110,10 @@ export default function App() {
             {/* Resume Button */}
             <div>
               <button
-                onClick={() => scrollToSection('projects')}
+                onClick={() => window.open(
+                          "https://drive.google.com/file/d/1MzQq-DMfYJYteNWm7rZ3SXZt1IFBplX3/view",
+                          "_blank"
+                        )}
                 className="px-8 py-4 bg-purple-600 rounded-full hover:bg-purple-700 transition-all duration-300 shadow-lg shadow-purple-500/50"
               >
                 Resume

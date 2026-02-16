@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Engagement&family=Ephesis&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Engagement&family=Ephesis&family=Lavishly+Yours&display=swap');
+
+.fancy-name {
+  font-family: 'Ephesis', cursive;
+  font-size: 3rem;
+  font-style: normal;
+  background: linear-gradient(90deg, #FFD700, #FFB800);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fancy-initials {
+  font-family: 'Lavishly Yours', cursive;
+  font-size: 2rem;
+  font-style: normal;
+  background: linear-gradient(90deg, #FFD700, #FFB800);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body {
+  font-family: 'Zalando Sans Expanded', sans-serif;
+}
