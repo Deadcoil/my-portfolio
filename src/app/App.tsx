@@ -122,26 +122,33 @@ export default function App() {
           </div>
         </section>
 
-        <section id="about" className="min-h-screen flex items-center justify-center px-8 py-20">
-          <div className="max-w-4xl">
+        <section id="about" className="min-h-screen px-8 py-20">
+          <div className="mt-10">
             <h2 className="text-5xl mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               About Me
             </h2>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
               <p className="text-lg text-gray-300 leading-relaxed mb-4">
-                I'm a passionate developer with a love for creating beautiful and functional web experiences.
-                With expertise in modern web technologies, I bring ideas to life through clean code and innovative design.
+                I am a passionate and detail-oriented full-stack developer dedicated to building modern, scalable, and user-centric web applications. With strong expertise in technologies like Java, React.js, Node.js, and MySQL, I enjoy transforming ideas into real-world digital solutions that are both functional and visually appealing.
+              </p>
+              <p className="text-lg text-gray-300 leading-relaxed mb-4">
+                On the frontend, I work extensively with React to create responsive, interactive, and intuitive user interfaces that enhance user experience. On the backend, I leverage Node.js and Java to build secure, efficient, and well-structured server-side applications. I use MySQL for designing optimized databases that ensure data integrity and performance.
+              </p>
+              <p className="text-lg text-gray-300 leading-relaxed mb-4">
+                I believe that great software development goes beyond writing code — it’s about understanding user needs, solving real-world problems, and delivering clean, maintainable, and scalable solutions. I focus on writing structured code, following best practices, and building applications that are easy to extend and maintain.
+              </p>
+              <p className="text-lg text-gray-300 leading-relaxed mb-4">
+                I continuously explore new tools and emerging technologies to stay updated with industry trends. Whether it’s developing full-stack projects, improving application performance, or experimenting with new frameworks, I approach every challenge with curiosity and a strong desire to grow.
               </p>
               <p className="text-lg text-gray-300 leading-relaxed">
-                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects,
-                or sharing knowledge with the developer community.
+                Beyond development, I actively contribute to collaborative projects, engage with the developer community, and enjoy sharing knowledge. When I’m not coding, I spend time enhancing my problem-solving skills, learning advanced concepts, or working on innovative side projects that push my technical boundaries.
               </p>
             </div>
           </div>
         </section>
 
-        <section id="skills" className="min-h-screen flex items-center justify-center px-8 py-20">
-          <div className="max-w-4xl w-full">
+        <section id="skills" className="min-h-screen px-8 py-20">
+          <div className="w-full">
             <h2 className="text-5xl mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Skills
             </h2>
