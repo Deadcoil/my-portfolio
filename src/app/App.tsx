@@ -282,8 +282,8 @@ export default function App() {
           </div>
         </section>
 
-        <section id="experience" className="min-h-screen flex items-center justify-center px-8 py-20">
-          <div className="max-w-4xl w-full">
+        <section id="experience" className="min-h-screen px-8 py-20">
+          <div className="mt-10 w-full">
             <h2 className="text-5xl mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Experience
             </h2>
@@ -293,8 +293,7 @@ export default function App() {
               
               {[
                 { title: 'Senior Developer', company: 'Tech Company', period: '2022 - Present', description: 'Leading development teams and architecting scalable solutions.' },
-                { title: 'Full Stack Developer', company: 'Startup Inc.', period: '2020 - 2022', description: 'Built full-stack applications using modern technologies.' },
-                { title: 'Junior Developer', company: 'Digital Agency', period: '2018 - 2020', description: 'Developed responsive websites and web applications.' },
+                { title: 'Full Stack Developer Intern', company: 'Kurators', period: 'July 2025 - December 2025', description: 'Collaborating with the development team, I build and maintain production-level web applications by developing REST APIs with PHP and creating 10+ responsive frontend modules using Bootstrap and JavaScript, improving UI load time by 25%. I actively contribute in Agile sprints, stand-ups, and code reviews while working closely with senior developers and the CTO to deliver scalable, high-quality solutions.' },
               ].map((job, index) => (
                 <div key={index} className="relative flex items-start gap-8">
                   {/* Circle node on the pathway */}
