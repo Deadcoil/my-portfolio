@@ -1,5 +1,18 @@
 import { useState } from 'react';
 import { Home, User, Code, Briefcase, Award, Mail, Linkedin, Github, Instagram } from 'lucide-react';
+import { FaReact } from "react-icons/fa";
+import { FaJava } from "react-icons/fa6";
+import { SiJavascript } from "react-icons/si";
+import { FaNode } from "react-icons/fa";
+import { RiTailwindCssFill } from "react-icons/ri";
+import { SiMysql } from "react-icons/si";
+import { FaGitAlt } from "react-icons/fa6";
+import { TbBrandCpp } from "react-icons/tb";
+import { FaBootstrap } from "react-icons/fa6";
+import { FaCss3Alt } from "react-icons/fa";
+import { SiPostman } from "react-icons/si";
+import { FaPhp } from "react-icons/fa6";
+
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import profilePic from "../assets/prakash-kpmg.jpeg";
 import "../index.css";
@@ -30,6 +43,21 @@ export default function App() {
     { icon: Github, url: 'https://github.com/Deadcoil', label: 'GitHub' },
     { icon: Instagram, url: 'https://www.instagram.com/deadcoil.dumb?igsh=MWxwdGhlODlscm1udA==', label: 'Instagram' },
   ];
+
+   const skills = [
+                              { name: "Java", icon: <FaJava /> },
+                              { name: "C/C++", icon: <TbBrandCpp /> },
+                              { name: "PHP", icon: <FaPhp /> },
+                              { name: "JavaScript", icon: <SiJavascript /> },
+                              { name: "React.js", icon: <FaReact /> },
+                              { name: "Node.js", icon: <FaNode /> },
+                              { name: "CSS3", icon: <FaCss3Alt /> },
+                              { name: "Tailwind CSS", icon: <RiTailwindCssFill /> },
+                              { name: "Bootstrap", icon: <FaBootstrap /> },
+                              { name: "SQL", icon: <SiMysql /> },
+                              { name: "Git", icon: <FaGitAlt /> },
+                              { name: "Postman", icon: <SiPostman /> },
+                            ];
 
   return (
     <div className="size-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-y-auto">
@@ -148,17 +176,22 @@ export default function App() {
         </section>
 
         <section id="skills" className="min-h-screen px-8 py-20">
-          <div className="w-full">
+          <div className="w-full mt-10">
             <h2 className="text-5xl mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Skills
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {['React', 'TypeScript', 'Node.js', 'Tailwind CSS', 'Python', 'SQL', 'Git', 'UI/UX Design'].map((skill) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {skills.map((skill) => (
                 <div
-                  key={skill}
+                  key={skill.name}
                   className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20"
                 >
-                  <h3 className="text-xl">{skill}</h3>
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-xl">{skill.name}</h3>
+                    <span className="text-2xl">
+                      {skill.icon}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
