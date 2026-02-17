@@ -95,7 +95,72 @@ export default function App() {
     ],
   },
 ];
+const [toast, setToast] = useState<{
+  type: "success" | "error";
+  message: string;
+} | null>(null);
 
+const [loading, setLoading] = useState(false);
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  const form = e.currentTarget; // ✅ Store reference FIRST
+
+  const formData = new FormData(form);
+
+  const data = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    message: formData.get("message"),
+  };
+
+  try {
+    setLoading(true);
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed");
+    }
+
+    const result = await response.json();
+
+    if (result.success !== true) {
+      throw new Error("Backend failure");
+    }
+
+    // ✅ SUCCESS
+    setToast({
+      type: "success",
+      message: "Message sent successfully ✅",
+    });
+
+    form.reset(); // ✅ Use stored reference
+
+    setTimeout(() => {
+      setToast(null);
+    }, 2000);
+
+  } catch (error) {
+    console.error("Frontend error:", error);
+
+    setToast({
+      type: "error",
+      message: "Error sending message ❌",
+    });
+
+    setTimeout(() => {
+      setToast(null);
+    }, 3000);
+  } finally {
+    setLoading(false); // ✅ STOP loading (runs in both success + error)
+  }
+};
 
   return (
     <div className="size-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-y-auto">
@@ -292,7 +357,7 @@ export default function App() {
               <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 via-pink-500 to-purple-500" />
               
               {[
-                { title: 'Senior Developer', company: 'Tech Company', period: '2022 - Present', description: 'Leading development teams and architecting scalable solutions.' },
+                { title: 'Academic Trainee', company: 'KPMG India', period: 'February 2026 - Present', description: 'At KPMG, I contributed to technology-driven solutions by assisting in application development, data analysis, and system optimization tasks. I worked with modern tools and frameworks to support internal projects and improve operational efficiency.' },
                 { title: 'Full Stack Developer Intern', company: 'Kurators', period: 'July 2025 - December 2025', description: 'Collaborating with the development team, I build and maintain production-level web applications by developing REST APIs with PHP and creating 10+ responsive frontend modules using Bootstrap and JavaScript, improving UI load time by 25%. I actively contribute in Agile sprints, stand-ups, and code reviews while working closely with senior developers and the CTO to deliver scalable, high-quality solutions.' },
               ].map((job, index) => (
                 <div key={index} className="relative flex items-start gap-8">
@@ -318,39 +383,109 @@ export default function App() {
           </div>
         </section>
 
-        <section id="contacts" className="min-h-screen flex items-center justify-center px-8 py-20">
-          <div className="max-w-2xl w-full">
-            <h2 className="text-5xl mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Get In Touch
-            </h2>
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <p className="text-lg text-gray-300 mb-8 text-center">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4 p-4 bg-white/5 rounded-lg">
-                  <Mail className="text-purple-400" />
-                  <span>your.email@example.com</span>
-                </div>
-                <div className="flex justify-center gap-6 mt-8">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white/10 backdrop-blur-sm p-4 rounded-full hover:bg-purple-600 transition-all duration-300 hover:scale-110"
-                      aria-label={social.label}
-                    >
-                      <social.icon size={24} />
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+        <section id="contacts" className="min-h-screen px-8 py-20">
+          <div className="mt-10 mx-auto">
+  <h2 className="text-5xl mb-12 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+    Contacts
+  </h2>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+    {/* RIGHT COLUMN - Form Card */}
+    <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+      <h3 className="text-2xl font-semibold mb-6 text-purple-300">
+        Send Me a Message
+      </h3>
+
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required
+          className="w-full p-4 rounded-lg bg-white/10 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+        />
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          required
+          className="w-full p-4 rounded-lg bg-white/10 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+        />
+
+        <textarea
+          name="message"
+          placeholder="Your Query"
+          rows={5}
+          required
+          className="w-full p-4 rounded-lg bg-white/10 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+        />
+
+        <button
+  type="submit"
+  disabled={loading}
+  className="w-full py-4 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 font-semibold transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+>
+  {loading ? "Sending..." : "Send Message"}
+</button>
+
+      </form>
+      {toast && (
+  <div
+    className={`fixed top-6 right-6 px-6 py-4 rounded-xl shadow-lg z-50 text-white transition-all duration-300 ${
+      toast.type === "success"
+        ? "bg-gradient-to-r from-purple-500 to-pink-500"
+        : "bg-red-500"
+    }`}
+  >
+    {toast.message}
+  </div>
+)}
+
+
+    </div>
+    {/* LEFT COLUMN - Info Card */}
+    <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 flex flex-col justify-between">
+      <div>
+        <h3 className="text-2xl font-semibold mb-6 text-purple-300">
+        Or, Get In Touch
+      </h3>
+        <p className="text-lg text-gray-300 mb-8">
+          I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+        </p>
+
+        <div className="flex items-center gap-4 p-4 bg-white/5 rounded-lg mb-8">
+          <Mail className="text-purple-400" />
+          <span>beingstudentloving009@gmail.com</span>
+        </div>
+      </div>
+
+      <div className="flex gap-6">
+        {socialLinks.map((social, index) => (
+          <a
+            key={index}
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white/10 p-4 rounded-full hover:bg-purple-600 transition-all duration-300 hover:scale-110"
+          >
+            <social.icon size={22} />
+          </a>
+        ))}
+      </div>
+    </div>
+
+    
+
+  </div>
+</div>
+
         </section>
       </div>
     </div>
+
+    
   );
 }
+
+
