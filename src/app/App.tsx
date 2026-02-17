@@ -12,6 +12,9 @@ import { FaBootstrap } from "react-icons/fa6";
 import { FaCss3Alt } from "react-icons/fa";
 import { SiPostman } from "react-icons/si";
 import { FaPhp } from "react-icons/fa6";
+import Ezspence from "../assets/Ezpensce.jpeg";
+import ePMSSS from "../assets/epmsss.jpg";
+import SlackConnect from "../assets/slack.jpg";
 
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import profilePic from "../assets/prakash-kpmg.jpeg";
@@ -58,6 +61,41 @@ export default function App() {
                               { name: "Git", icon: <FaGitAlt /> },
                               { name: "Postman", icon: <SiPostman /> },
                             ];
+
+  const projects = [
+  {
+    img:{src: Ezspence, alt: "EzSPENCE - Expense Tracker App"},
+    name: "EzSPENCE",
+    tech: "MongoDB, Express, React.js, Node.js, JWT, Chakra UI",
+    description: [
+      "Developed a MERN stack expense tracker with JWT-based authentication tracking 80+ monthly expenses.",
+      "Reduced authentication processing time by 30% using optimized JWT logic.",
+      "Tested frontend modules and integrated backend CRUD operations.",
+    ],
+  },
+  {
+    img:{src: ePMSSS, alt: "e-PMSSS Scholarship Disbursement System"},
+    name: "e-PMSSS Scholarship Disbursement System",
+    tech: "HTML, CSS, Bootstrap, JavaScript,React.js, Node.js, Git",
+    description: [
+      "Built a responsive interface reducing errors by 60% vs manual submission.",
+      "Created reusable modular UI components with Bootstrap.",
+      "Contributed 40% of UI work in a 6-member Agile team with sprint planning.",
+    ],
+  },
+  {
+    img:{src: SlackConnect, alt: "Slack Connect - Slack Integrated Messaging App"},
+    name: "Slack Connect",
+    tech: "TypeScript, Node.js, OAuth 2.0, JavaScript, HTML, CSS",
+    description: [
+      "Built a full-stack Slack-integrated app using OAuth 2.0 authentication.",
+      "Securely stored access and refresh tokens in JSON.",
+      "Enabled scheduled and instant message delivery.",
+      "Developed React UI for channel selection and scheduling.",
+    ],
+  },
+];
+
 
   return (
     <div className="size-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-y-auto">
@@ -198,25 +236,49 @@ export default function App() {
           </div>
         </section>
 
-        <section id="projects" className="min-h-screen flex items-center justify-center px-8 py-20">
-          <div className="max-w-6xl w-full">
+        <section id="projects" className="min-h-screen px-8 py-20">
+          <div className=" w-full mt-10">
             <h2 className="text-5xl mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Projects
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3, 4, 5, 6].map((project) => (
-                <div
-                  key={project}
-                  className="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 group"
-                >
-                  <div className="h-48 bg-gradient-to-br from-purple-600/30 to-pink-600/30 group-hover:from-purple-600/50 group-hover:to-pink-600/50 transition-all duration-300" />
-                  <div className="p-6">
-                    <h3 className="text-xl mb-2">Project {project}</h3>
-                    <p className="text-gray-400">A brief description of this amazing project and what it does.</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+  {projects.map((project) => (
+    <div
+      key={project.name}
+      className="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 group"
+    >
+      <div className="h-48 overflow-hidden rounded-t-xl bg-gradient-to-br from-purple-600/30 to-pink-600/30 group-hover:from-purple-600/50 group-hover:to-pink-600/50 transition-all duration-300">
+        {project.img ? (
+          <ImageWithFallback
+            src={project.img.src}
+            alt={project.img.alt}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-700 flex items-center justify-center">
+            <span className="text-gray-400">No Image</span>
+          </div>
+        )}
+      </div>
+
+
+      <div className="p-6">
+        <h3 className="text-xl mb-1">{project.name}</h3>
+
+        <h4 className="text-sm mb-3">
+          Tech Stack: {project.tech}
+        </h4>
+
+        <ul className="text-gray-400 list-disc list-inside space-y-1 text-sm">
+          {project.description.map((point, i) => (
+            <li key={i}>{point}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  ))}
+</div>
+
           </div>
         </section>
 
